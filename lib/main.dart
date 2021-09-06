@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(20),
               color: Colors.lightGreen,
-              child: Text('Hello Again', style: TextStyle(
+              child: Text('Hello Again!', style: TextStyle(
                 fontFamily: 'GoogleSans'
                 ),
               ),
