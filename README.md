@@ -1,16 +1,10 @@
-# binary_search
+# Proyecto: binary_search
 
-A new Flutter project.
+Repositorio para el desarrollo del proyecto de Algoritmica 2
 
-## Getting Started
+## Descripcion
 
-This project is a starting point for a Flutter application.
+El proyecto se enfoca en el uso del algoritmo de Busqueda Binaria y el uso de la tecnologia Flutter
+de Google para desarrollar una aplicacion movil, que se base en la adivinanza de numeros dentro de un
+rango dado.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
