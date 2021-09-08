@@ -1,74 +1,190 @@
+// @dart=2.9
+import 'package:audioplayers/audio_cache.dart';
+import 'package:binary_search/game1.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(MaterialApp(home: Home()));
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+
+
+
+
+class Home extends StatefulWidget {
+  const Home({Key key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+
+class _HomeState extends State<Home> {
+  int points = 0;
+
+  String pic = 'assets/finn_jake.png';
+
+  AudioPlayer audioPlayer = AudioPlayer();
+  AudioPlayerState audioPlayerState = AudioPlayerState.PAUSED;
+  AudioCache audioCache;
+
+  String path = 'sounds/ATmusic.mp3';
+
+  @override
+  void initState(){
+    super.initState();
+    audioCache  = AudioCache(fixedPlayer: audioPlayer);
+    audioPlayer.onPlayerStateChanged.listen((AudioPlayerState s){
+      setState(() {
+        audioPlayerState = s;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    audioPlayer.release();
+    audioPlayer.dispose();
+  }
+
+  playMusic() async{
+    await audioCache.play(path);
+  }
+
+  pauseMusic() async{
+    await audioPlayer.pause();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueAccent,
       appBar: AppBar(
         title: Text("Binary Search", style: TextStyle(
-          fontFamily: 'GoogleSans'
+          fontFamily: 'Thunderman',
+          color: Colors.blueAccent,
+
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.red[600],
+        backgroundColor: Colors.white,
       ),
 
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-
-          Expanded(
-            flex: 2,
-              child: Image.asset('assets/finn.png')
-          ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              color: Colors.cyan,
-              child: Text('Hello', style: TextStyle(
-                  fontFamily: 'GoogleSans'
-                ),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/finn_jake.jpg'),
+                radius: 60,
               ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              color: Colors.pink,
-              child: Text('GoodBye', style: TextStyle(
-                fontFamily: 'GoogleSans'
-                ),
-              ),
-
+            Divider(
+              height: 60,
+              color: Colors.white,
+              thickness: 1,
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              color: Colors.lightGreen,
-              child: Text('Hello Again!', style: TextStyle(
-                fontFamily: 'GoogleSans'
-                ),
+            Center(
+              child: Text('Guess It!', style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Thunderman',
+                  fontSize: 70,
+                  fontWeight: FontWeight.bold
+              ),
               ),
             ),
-          ),
-        ],
-      ),
 
+            Center(
+              child: Text('Select your game', style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: 'Thunderman',
+                letterSpacing: 2,
+              ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/jakePhoto.png', scale: 2, ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FlatButton(onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Game1()));
+                },
+                  color: Colors.white,
+                  child: Text(
+                    'COM vs. You',
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Thunderman'
 
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/finnPhoto.png', scale: 2, ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FlatButton(onPressed: (){},
+                  color: Colors.white,
+                  child: Text(
+                    'You vs. COM',
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Thunderman'
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text("Click"),
-        backgroundColor: Colors.red[600],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            Center(
+              child: IconButton(
+                onPressed: (){
+                  audioPlayerState == AudioPlayerState.PLAYING
+                      ? pauseMusic()
+                      : playMusic();
+                },
+                icon: Icon(audioPlayerState == AudioPlayerState.PLAYING
+                  ? Icons.music_note
+                    : Icons.music_off
+                ),
+                iconSize: 20,
+                color: Colors.white,
+
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }
 }
+
+
+
