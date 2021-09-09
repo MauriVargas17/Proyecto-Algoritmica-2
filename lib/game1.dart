@@ -148,9 +148,9 @@ class _Game1State extends State<Game1> {
                   width: 10,
                 ),
 
-                if(!gameStarted) Text('Choose a number between 1 and $hi', style: TextStyle(
+                if(!gameStarted) Text('Think of a number between 1 and $hi', style: TextStyle(
                   color: Colors.white,
-                  fontSize: 15,
+                  fontSize: 14,
                   fontFamily: 'Thunderman',
                   letterSpacing: 0.5,
                   ),
@@ -162,7 +162,7 @@ class _Game1State extends State<Game1> {
                 letterSpacing: 0.5,
                 ),
                 ),
-                if(isTheNumber)  Text('I am the Cool Guy!', style: TextStyle(
+                if(isTheNumber)  Text('I win! For the glory of Jakoria!', style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontFamily: 'Thunderman',
@@ -218,7 +218,7 @@ class _Game1State extends State<Game1> {
                   color: Colors.white,
                   child: Text(
 
-                    'A bit higher...',
+                    'A bit high...',
                     style: TextStyle(
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,
@@ -275,7 +275,7 @@ class _Game1State extends State<Game1> {
                 },
                   color: Colors.white,
                   child: Text(
-                    'A bit lower...',
+                    'A bit low...',
                     style: TextStyle(
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,

@@ -58,6 +58,9 @@ flutter:
     - assets/jakeAngry.png
     - assets/jakeAsking.png
     - assets/jakeWinner.png
+    - assets/finnAngry.png
+    - assets/finnAsking.png
+    - assets/finnWinner.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

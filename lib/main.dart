@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:audioplayers/audio_cache.dart';
 import 'package:binary_search/game1.dart';
+import 'package:binary_search/game2.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -124,7 +125,7 @@ class _HomeState extends State<Home> {
                 },
                   color: Colors.white,
                   child: Text(
-                    'COM vs. You',
+                    'You vs. Jake',
                     style: TextStyle(
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,
@@ -147,10 +148,13 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlatButton(onPressed: (){},
+                FlatButton(onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Game2()));
+                },
                   color: Colors.white,
                   child: Text(
-                    'You vs. COM',
+                    'You vs. Finn',
                     style: TextStyle(
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,
